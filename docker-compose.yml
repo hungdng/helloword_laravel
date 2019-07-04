@@ -1,0 +1,23 @@
+version: "3"
+services:
+  db_dev:
+    image: mysql:5.7
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: develop
+      MYSQL_ROOT_PASSWORD: password
+    restart: always
+    ports:
+      - "3309:3306"
+    networks:
+      - net_laravel
+    volumes:
+      - db_laravel_dev:/var/lib/mysql
+
+volumes:
+  db_laravel_dev:
+
+networks:
+  net_laravel:
